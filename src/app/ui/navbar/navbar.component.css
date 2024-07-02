@@ -1,0 +1,13 @@
+.border-teal-700 {
+    --tw-border-opacity: 1;
+    border-color: rgb(15 118 110 / var(--tw-border-opacity))
+        /* #0f766e */
+    ;
+}
+
+.active-button {
+    background-color: #005B5B;
+    /* Adjust background color */
+
+}
+

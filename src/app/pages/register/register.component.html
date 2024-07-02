@@ -1,0 +1,38 @@
+<div class="container mx-auto mt-10 bg-slate-200">
+    <h2 class="text-3xl font-bold text-center text-teal-900">Registro</h2>
+  
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="w-full mt-4">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" required>
+      </mat-form-field>
+  
+      <mat-form-field class="w-full mt-4">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido" required>
+      </mat-form-field>
+  
+      <mat-form-field class="w-full mt-4">
+        <mat-label>Rut</mat-label>
+        <input matInput formControlName="rut" required>
+      </mat-form-field>
+  
+      <mat-form-field class="w-full mt-4">
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input matInput type="date" formControlName="fechaNacimiento" required>
+        
+      </mat-form-field>
+  
+      <mat-form-field class="w-full mt-4">
+        <mat-label>Correo electrónico</mat-label>
+        <input matInput type="email" formControlName="correoElectronico" required email>
+      </mat-form-field>
+  
+      <mat-form-field class="w-full mt-4">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" formControlName="contrasena" required>
+      </mat-form-field>
+  
+      <button mat-raised-button type="submit" class="mt-4" color="primary">Registrarse</button>
+    </form>
+  </div>

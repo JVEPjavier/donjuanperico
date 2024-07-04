@@ -9,27 +9,29 @@
     </div>
 
     <div class="flex items-center">
-        <button mat-fab [matMenuTriggerFor]="menu" aria-label="Example icon button with a delete icon" class="mr-7">
+      <button mat-fab [matMenuTriggerFor]="menu" aria-label="Example icon button with a delete icon" class="mr-7">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <ng-container *ngIf="cartItems.length > 0">
+          <button mat-menu-item *ngFor="let producto of cartItems">
+            <mat-icon>
+              <img src="assets/imagenes/{{producto.imagen}}" alt="">
+            </mat-icon>
+            <span>{{ producto.nombreProducto }}</span>
+          </button>
+        </ng-container>
+        <ng-container *ngIf="cartItems.length === 0">
+          <button mat-menu-item disabled>
             <mat-icon>shopping_cart</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" >
-            <button mat-menu-item>
-              <mat-icon>dialpad</mat-icon>
-              <span>Redial</span>
-            </button>
-            <button mat-menu-item disabled>
-              <mat-icon>voicemail</mat-icon>
-              <span>Check voice mail</span>
-            </button>
-            <button mat-menu-item>
-              <mat-icon>notifications_off</mat-icon>
-              <span>Disable alerts</span>
-            </button>
-          </mat-menu>
-        <button mat-button class="mr-2" routerLink="login" [ngClass]="{'active-button': menuOption == 'login'}"
-            (click)="onOption('login')">Iniciar Sesion</button>
-        <button mat-button routerLink="register" [ngClass]="{'active-button': menuOption == 'register'}"
-            (click)="onOption('register')">Registrarse</button>
+            <span>Carrito vacío</span>
+          </button>
+        </ng-container>
+      </mat-menu>
+      <button mat-button class="mr-2" routerLink="login" [ngClass]="{'active-button': menuOption == 'login'}"
+              (click)="onOption('login')">Iniciar Sesion</button>
+      <button mat-button routerLink="register" [ngClass]="{'active-button': menuOption == 'register'}"
+              (click)="onOption('register')">Registrarse</button>
     </div>
 
 

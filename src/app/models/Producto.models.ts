@@ -4,9 +4,17 @@ export interface Producto {
     precio:         number;
     descripcion:    string;
     imagen:         string;
+    cantidad: number;
+    
     proveedor:      Proveedor;
     categoria:      Categoria;
+
 }
+
+export interface ProductItemCart {
+    product: Producto;
+    quantity: number;
+  }
 
 export interface Categoria {
     id:              number;

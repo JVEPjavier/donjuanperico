@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { UsuarioService } from '../../Service/usuario.service';
+import { Usuario } from '../../models/Usuario.models';
+import { ProductoService } from '../../Service/producto.service';
 
 @Component({
   selector: 'app-register',
@@ -15,22 +18,36 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 })
 export class RegisterComponent {
 
+  _registerService = inject(ProductoService)
+
   registroForm = new FormGroup({
     nombre: new FormControl('', [Validators.required]),
     apellido: new FormControl('', [Validators.required]),
     rut: new FormControl('', [Validators.required]),
     fechaNacimiento: new FormControl('', [Validators.required]),
     correoElectronico: new FormControl('', [Validators.required, Validators.email]),
-    contrasena: new FormControl('', [Validators.required])
+    contraseña: new FormControl('', [Validators.required])
   });
 
+  
   constructor() {
 
   }
 
-
-  onSubmit() {
-    // Implementar la lógica para enviar los datos del formulario al servidor
-    console.log(this.registroForm.value);
+  onSubmit(event: Event) {
+    event.preventDefault();
+    if (this.registroForm.valid) {
+      this._registerService.register(this.registroForm.value).subscribe(
+        response => {
+          console.log('Registro exitoso', response);
+        },
+        error => {
+          console.error('Error en el registro', error);
+        }
+      );
+    } else {
+      console.error('Formulario inválido');
+    }
   }
 }
+
